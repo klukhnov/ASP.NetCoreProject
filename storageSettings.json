@@ -1,0 +1,6 @@
+﻿{
+  "ConnectionStrings": {
+    "AzureStorageAccount": "DefaultEndpointsProtocol=https;AccountName=tranquilalmatywebsite;AccountKey=/Y13CgSdNYPTDRT9Rd/wRNz1mxqqDY8NZBj3Rx4yANp77fTqLwuI0bnn2e6NwU2Af+fQoYXZWkgs1EnSo/+/yQ==;EndpointSuffix=core.windows.net"
+  }
+
+}

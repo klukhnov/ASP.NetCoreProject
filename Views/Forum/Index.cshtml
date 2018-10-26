@@ -1,0 +1,95 @@
+﻿@model TranquilAlmatyWebsite.Models.Forum.ForumIndexModel
+
+<div class="container body-content">
+    <div class="row sectionHeader">
+        <div class="sectionHeading">Browse Forums</div>
+        <div class="sectionDescription">
+            <p>Welcome to <strong>Tranquil Almaty Website</strong>. Posts are broadly categorized into different types of tranquil spots available in the city.</p>
+            <p>
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <span>You must be a <a asp-controller="Account" asp-action="Register">registered user</a> to create a new post.</span>
+                }
+            </p>
+        </div>
+    </div>
+
+    <div class="row" id="forumIndexContent">
+        <table class="table table-hover" id="forumIndexTable">
+            <tbody>
+                @foreach (var forum in Model.ForumList)
+                {
+                    <tr>
+                        <td>
+                            <div class="forumLogo" style="background-image: url(@forum.ImageUrl);"></div>
+                            <div class="forumData">
+                                <div class="forumTitle">
+                                    <a asp-controller="Forum" asp-action="Topic" asp-route-id="@forum.Id">@forum.Name</a>
+                                </div>
+                                <div class="forumSubTitle">
+                                    @if (forum.HasRecentPost)
+                                    {
+                                        <div class="hasRecentPost">Hot</div>
+                                    }
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="forumPostCount">
+                                @forum.NumberOfPosts Posts
+                            </div>
+                            <div class="forumMemberCount">
+                                @forum.NumberOfUsers Users
+                            </div>
+                        </td>
+                        <td>
+                            <div class="forumDescription">
+                                @forum.Description
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div>
+    <style>
+        #myBtn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            z-index: 99;
+            border: none;
+            outline: none;
+            background-color: #555;
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+            #myBtn:hover {
+                background-color: red;
+            }
+    </style>
+</div>
+<div>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+    <script>
+        window.onscroll = function () { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("myBtn").style.display = "block";
+            } else {
+                document.getElementById("myBtn").style.display = "none";
+            }
+        }
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+</div>
